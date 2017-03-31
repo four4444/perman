@@ -20,8 +20,14 @@ app.use(express.static(path.join(__dirname, 'public/')));
 //    1. /
 //    2. /about
 //    3. /contact
-app.get(/\/(about|contact)?$/, function(req, res) {
+app.get('/', function(req, res) {
   res.sendFile(path.join(__dirname, 'views/index.html'));
+});
+app.get('/about', function(req, res) {
+  res.sendFile(path.join(__dirname, 'views/about.html'));
+});
+app.get('/contact', function(req, res) {
+  res.sendFile(path.join(__dirname, 'views/contact.html'));
 });
 
 // serve up the dashboard when someone visits /dashboard
