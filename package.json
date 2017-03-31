@@ -1,17 +1,28 @@
 {
-  "name": "proj",
+  "name": "perman",
   "version": "1.0.0",
-  "description": "",
+  "description": "Personal Manager for You",
   "main": "app.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "nodemon app.js"
   },
-  "author": "",
+  "author": "fourpro",
   "license": "ISC",
   "dependencies": {
-    "express": "^4.15.2"
+    "express": "^4.15.2",
+    "socket.io": "^1.7.3"
   },
-  "devDependencies": {
-    "nodemon": "^1.11.0"
-  }
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/four4444/perman.git"
+  },
+  "keywords": [
+    "personal",
+    "manager"
+  ],
+  "bugs": {
+    "url": "https://github.com/four4444/perman/issues"
+  },
+  "homepage": "https://github.com/four4444/perman#readme"
 }
