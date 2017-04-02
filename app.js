@@ -5,6 +5,10 @@ var http = require('http').Server(app);
 var io = require('socket.io')(http);
 var path = require('path');
 var config = require('./config.js');
+var main = require('./routes/main.js');
+var login = require('./routes/login.js');
+var registration = require('./routes/registration.js');
+var dashboard = require('./routes/dashboard.js');
 
 // the object that will hold information about the active users currently
 // on the site
@@ -20,20 +24,10 @@ app.use(express.static(path.join(__dirname, 'public/')));
 //    1. /
 //    2. /about
 //    3. /contact
-app.get('/', function(req, res) {
-  res.sendFile(path.join(__dirname, 'views/index.html'));
-});
-app.get('/about', function(req, res) {
-  res.sendFile(path.join(__dirname, 'views/about.html'));
-});
-app.get('/contact', function(req, res) {
-  res.sendFile(path.join(__dirname, 'views/contact.html'));
-});
-
-// serve up the dashboard when someone visits /dashboard
-app.get('/dashboard', function(req, res) {
-  res.sendFile(path.join(__dirname, 'views/dashboard.html'));
-});
+app.use('/', main);
+app.use('/login', login);
+app.use('/registration', registration);
+app.use('/dashboard', dashboard);
 
 io.on('connection', function(socket) {
   if (socket.handshake.headers.host === config.host
