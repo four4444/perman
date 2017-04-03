@@ -15,6 +15,7 @@ var session = require('express-session');
 
 var config = require('./config.js');
 
+mongoose.Promise = global.Promise;
 mongoose.connect(config.dbURL);
 
 require('./configPassport')(passport);

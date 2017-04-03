@@ -73,7 +73,15 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/1.0.17/vue.js"></script>
   <script src="/socket.io/socket.io.js"></script>
   <script src="js/dashboard.js"></script>
-
+  <script src="/socket.io/socket.io.js"></script>
+    <script>
+        var socket = io();
+        var visitorData = {
+        referringSite: document.referrer,
+            page: location.pathname
+        }
+        socket.emit('visitor-data', visitorData);
+    </script>
 </body>
 
 </html>
