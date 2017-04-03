@@ -8,6 +8,7 @@
     <title>Контакты</title>
 
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css">
     <style>
         body {
             background-color: #F2F2F0;
@@ -18,7 +19,7 @@
             padding: 5px;
         }
 
-        .navbar a {
+        .navbar h4 {
             color: #8C8C8C;
             font-size: 1.5em;
         }
@@ -34,7 +35,7 @@
     <nav class="navbar navbar-inverse" style="border-radius: 0px;">
         <div class="container">
             <div class="navbar-header">
-                <a class="navbar-brand" href="/">Главная</a>
+                <h4><span class="fa fa-sign-in"></span> Регистрация</h4>
             </div>
         </div>
     </nav>
@@ -42,12 +43,17 @@
     <div class="container">
         <div class="row">
             <div class="col-xs-12">
-                <form>
-                	<input type="text" placeholder="номер телефона">
-                	<input type="password" placeholder="пароль">
-                	<input type="password" placeholder="повторите пароль">
-                	<input type="submit" value="зарегистрироваться">
+                <form action="/registration" method="post">
+                    <div class="form-group">
+                        <input type="text" class="form-control" name="email" placeholder="email">
+                    </div>
+                    <div class="form-group">
+                        <input type="password" class="form-control" name="password" placeholder="пароль">
+                    </div>
+                    <button type="submit" class="btn btn-warning">зарегистрироваться</button>
                 </form>
+                <hr>
+                <p>Есть аккаунт? <a href="/login">войти</a></p>
             </div>
         </div>
     </div>

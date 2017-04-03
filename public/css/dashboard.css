@@ -8,7 +8,7 @@ body {
   padding: 5px;
 }
 
-.navbar a {
+.navbar h4, .navbar a {
   color: #8C8C8C;
   font-size: 1.5em;
 }

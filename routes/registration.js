@@ -1,6 +1,9 @@
 var path = require('path');
 var express = require('express');
-var router = express.Router(); router.get('/', function(req, res) {
-  res.sendFile(path.resolve(__dirname, '../views/registration.html'));
+var router = express.Router();
+
+router.get('/', function(req, res) {
+    res.sendFile(path.resolve(__dirname, '../views/registration.html'), {message: req.flash('signupMessage')});
 });
+
 module.exports = router;

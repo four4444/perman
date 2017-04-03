@@ -1,4 +1,5 @@
 module.exports = {
     host: "localhost:5000",
-    dashboardEndpoint: "/dashboard"
+    dashboardEndpoint: "/dashboard",
+    dbURL: "mongodb://localhost/passport"
 }

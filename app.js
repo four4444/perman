@@ -4,30 +4,37 @@ var app = express();
 var http = require('http').Server(app);
 var io = require('socket.io')(http);
 var path = require('path');
-var config = require('./config.js');
-var main = require('./routes/main.js');
-var login = require('./routes/login.js');
-var registration = require('./routes/registration.js');
-var dashboard = require('./routes/dashboard.js');
+var mongoose = require('mongoose');
+var passport = require('passport');
+var flash = require('connect-flash');
 
-// the object that will hold information about the active users currently
-// on the site
+var morgan = require('morgan');
+var cookieParser = require('cookie-parser');
+var bodyParser = require('body-parser');
+var session = require('express-session');
+
+var config = require('./config.js');
+
+mongoose.connect(config.dbURL);
+
+require('./configPassport')(passport);
+
+app.use(morgan('dev'));
+app.use(cookieParser());
+app.use(bodyParser());
+
+app.use(session({ secret: 'myverybigsecretkey' }));
+app.use(passport.initialize());
+app.use(passport.session()); // persistent login sessions
+app.use(flash());
+
 var visitorsData = {};
 
 app.set('port', (process.env.PORT || 5000));
 
-// serve the static assets (js/dashboard.js and css/dashboard.css)
-// from the public/ directory
 app.use(express.static(path.join(__dirname, 'public/')));
 
-// serve the index.html page when someone visits any of the following endpoints:
-//    1. /
-//    2. /about
-//    3. /contact
-app.use('/', main);
-app.use('/login', login);
-app.use('/registration', registration);
-app.use('/dashboard', dashboard);
+require('./routes/routes.js')(app, passport);
 
 io.on('connection', function(socket) {
   if (socket.handshake.headers.host === config.host

@@ -8,6 +8,7 @@
     <title>Главня</title>
 
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css">
     <style>
         body {
             background-color: #F2F2F0;
@@ -18,17 +19,13 @@
             padding: 5px;
         }
 
-        .navbar a {
+        .navbar h4 {
             color: #8C8C8C;
             font-size: 1.5em;
         }
-        
-        #login{
-        	float: left;
-        }
-        
+
         #reg{
-        	float: right;
+        	margin-left: 10px;
         }
 
         .coligo {
@@ -42,8 +39,7 @@
     <nav class="navbar navbar-inverse" style="border-radius: 0px;">
         <div class="container">
             <div class="navbar-header">
-                <a id="login" href="/login">Вход</a>
-                <a id="reg" href="/registration">Регистрация</a>
+                <h4><span class="fa fa-home"></span> Главная</h4>
             </div>
         </div>
     </nav>
@@ -51,7 +47,8 @@
     <div class="container">
         <div class="row">
             <div class="col-xs-12">
-                <h4 class="header"><a href="/dashboard">Аналитика</a></h4>
+                <a href="/login" id="login" class="btn btn-default"><span class="fa fa-user"></span> Вход</a>
+                <a href="/registration" id="reg" class="btn btn-default"><span class="fa fa-user"></span> Регистрация</a>
             </div>
         </div>
     </div>
