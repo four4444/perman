@@ -1,0 +1,59 @@
+doctype html
+html(lang="en")
+  head
+    meta(charset="utf-8")
+    meta(http-equiv="X-UA-Compatible", content="IE=edge")
+    meta(name="viewport", content="width=device-width, initial-scale=1")
+    title Главная
+    link(rel="stylesheet", href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css")
+    link(rel="stylesheet", href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css")
+    style.
+        body {
+            background-color: #F2F2F0;
+        }
+        .navbar {
+            background-color: #373737;
+            padding: 5px;
+        }
+        .navbar h4 {
+            color: #8C8C8C;
+            font-size: 1.5em;
+        }
+        #reg{
+        	margin-left: 10px;
+        }
+        .coligo {
+            color: #D0D0D0;
+            font-size: 0.8em;
+        }
+  body
+    nav.navbar.navbar-inverse(style="border-radius: 0px;")
+      .container
+        .navbar-header
+          h4
+            span.fa.fa-home
+            |  {{message}}
+    .container
+      .row
+        .col-xs-12
+          a.btn.btn-default(href="/login", id="login")
+            span.fa.fa-user
+            |  Вход
+          a.btn.btn-default(href="/registration", id="reg")
+            span.fa.fa-user
+            |  Регистрация
+    script(src="https://cdnjs.cloudflare.com/ajax/libs/vue/1.0.17/vue.js")
+    script(src="/socket.io/socket.io.js")
+    script.
+      var socket = io();
+      var visitorData = {
+          referringSite: document.referrer,
+          page: location.pathname
+      }
+      socket.emit('visitor-data', visitorData);
+      var vm = new Vue({
+        el: 'body',
+        data: {
+          message: "#{message}"
+        }
+      });

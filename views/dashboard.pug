@@ -1,0 +1,66 @@
+doctype html
+html(lang='en')
+  head
+    meta(charset='utf-8')
+    meta(http-equiv='X-UA-Compatible', content='IE=edge')
+    meta(name='viewport', content='width=device-width, initial-scale=1')
+    title Аналитика
+    link(rel='stylesheet', href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css')
+    link(rel='stylesheet', href='//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css')
+    link(rel='stylesheet', href='css/dashboard.css')
+  body
+    nav.navbar.navbar-inverse.navbar-fixed-top
+      .container
+        .navbar-header
+          h4
+            span.fa.fa-cog
+            |  Персональная страница
+          |  
+          a(href='/logout') Выход
+    .container
+      #app
+        .row
+          .col-xs-12
+            .well
+              h4.dash-blue id: #{user._id}
+              h4.dash-blue email: #{user.local.email}
+              h6.dash-blue password: #{user.local.password}
+        .row
+          .col-xs-3
+            .well
+              h1.dash-red
+                | {{ activeUsers }} 
+                i.glyphicon.glyphicon-user
+              h3.text-muted Active Users
+          .col-xs-9
+            h2.sub-header Active Pages
+            .table-responsive
+              table.table
+                thead
+                td Page URL
+                td Active Users
+                tbody
+                  tr(v-for='(page, count) in pages')
+                    td {{ page }}
+                    td {{ count }}
+            h2.sub-header Referrals
+            .table-responsive
+              table.table
+                thead
+                td Referring Site
+                td Active Users
+                tbody
+                  tr(v-for='(referringSite, count) in referrers')
+                    td {{ referringSite }}
+                    td {{ count }}
+    script(src='https://cdnjs.cloudflare.com/ajax/libs/vue/1.0.17/vue.js')
+    script(src='/socket.io/socket.io.js')
+    script(src='js/dashboard.js')
+    script(src='/socket.io/socket.io.js')
+    script.
+      var socket = io();
+      var visitorData = {
+      referringSite: document.referrer,
+      page: location.pathname
+      }
+      socket.emit('visitor-data', visitorData);

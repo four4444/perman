@@ -25,7 +25,7 @@ module.exports = function(passport) {
                 if (err)
                     return done(err);
                 if (user) {
-                    return done(null, false, req.flash('signupMessage', 'That email is already taken.'));
+                    return done(null, false, req.flash('signupMessage', 'Такой адрес электронной почты уже занят.'));
                 } else {
                     var newUser            = new User();
                     newUser.local.email    = email;
@@ -36,10 +36,10 @@ module.exports = function(passport) {
                         return done(null, newUser);
                     });
                 }
-            });    
+            });
         });
     }));
-    
+
     passport.use('local-login', new LocalStrategy({
         usernameField : 'email',
         passwordField : 'password',
@@ -50,9 +50,9 @@ module.exports = function(passport) {
             if (err)
                 return done(err);
             if (!user)
-                return done(null, false, req.flash('loginMessage', 'No user found.'));
+                return done(null, false, req.flash('loginMessage', 'Пользователь не найден.'));
             if (!user.validPassword(password))
-                return done(null, false, req.flash('loginMessage', 'Oops! Wrong password.'));
+                return done(null, false, req.flash('loginMessage', 'Неверный пароль.'));
             return done(null, user);
         });
     }));
